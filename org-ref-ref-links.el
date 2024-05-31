@@ -26,6 +26,18 @@
 (eval-and-compile (require 'ol))
 (require 'hydra)
 
+(defun org-ref-minibuffer-prefix ()
+  "Hook function for `minibuffer-setup-hook'.
+The idea is to locally bind C-u to a function that captures
+prefix args in `org-ref-prefix-arg' so you can use them later."
+  (setq org-ref-prefix-arg nil)
+  (local-set-key (kbd "C-u") (lambda ()
+			       (interactive)
+			       (setq org-ref-prefix-arg
+				     (if (null org-ref-prefix-arg)
+					 '(4)
+				       (list (* 4 (car org-ref-prefix-arg))))))))
+
 (defcustom org-ref-default-ref-type "ref"
   "Default ref link type to use when inserting ref links."
   :type 'string
