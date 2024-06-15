@@ -24,7 +24,6 @@
 ;;; Code:
 (eval-and-compile (require 'org-macs))
 (eval-and-compile (require 'ol))
-(require 'hydra)
 
 (defun org-ref-minibuffer-prefix ()
   "Hook function for `minibuffer-setup-hook'.
